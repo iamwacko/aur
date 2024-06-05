@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+export packages=kipr kipr-git entropy tartufo
