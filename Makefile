@@ -6,8 +6,16 @@ pull:
 
 .PHONY: check
 check:
-	$(foreach var,$(packages), pkgctl version check aur/$(var))
+	pkgctl version check aur/* 
+
+.PHONY: upgrade
+upgrade:
+	pkgctl version upgrade aur/* 
 
 .PHONY: clean
 clean:
 	rm -rf aur
+
+.PHONY: build
+build:
+	$(foreach var,$(packages), cd aur/$(var) && paru -B .)
