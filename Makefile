@@ -6,11 +6,16 @@ pull:
 
 .PHONY: check
 check:
-	pkgctl version check aur/* 
+	pkgctl version check $(filter-out $(wildcard aur/*-git),$(wildcard aur/*))
+
 
 .PHONY: upgrade
 upgrade:
-	pkgctl version upgrade aur/* 
+	pkgctl version upgrade $(filter-out $(wildcard aur/*-git),$(wildcard aur/*))
+
+.PHONY: git-clean
+git-clean:
+	$(foreach var,$(packages), cd aur/$(var); git clean -fdx; cd '../..';)
 
 .PHONY: clean
 clean:
@@ -18,4 +23,4 @@ clean:
 
 .PHONY: build
 build:
-	$(foreach var,$(packages), cd aur/$(var) && paru -B .)
+	$(foreach var,$(packages), paru --chroot -B aur/$(var))
