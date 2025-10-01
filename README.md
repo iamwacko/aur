@@ -37,3 +37,4 @@ Some upstreams have errors, or are unmaintained. I might want to help.
 - python-gnureadline: Failed to build with poetry error
 - python-tensorly: No such file or directory
 - cwtch-bindings: fails sometimes
+- cwtch-autobindings: fails sometimes
